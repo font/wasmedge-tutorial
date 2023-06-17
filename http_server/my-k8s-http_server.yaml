@@ -8,7 +8,7 @@ spec:
   hostNetwork: true
   containers:
   - name: http-server
-    image: quay.io/ifont/wasm_http_server:with-wasm-annotation
+    image: quay.io/ifont/wasm_http_server:latest
     command: [ "/http_server.wasm" ]
     ports:
     - containerPort: 1234
@@ -19,3 +19,12 @@ spec:
       initialDelaySeconds: 3
       periodSeconds: 30
     imagePullPolicy: Always
+    securityContext:
+      allowPrivilegeEscalation: false
+      runAsNonRoot: true
+      runAsUser: 1000
+      seccompProfile:
+        type: RuntimeDefault
+      capabilities:
+        drop:
+          - "ALL"
