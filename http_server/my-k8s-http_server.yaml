@@ -4,8 +4,9 @@ metadata:
   name: wasm-http-server
   annotations:
     module.wasm.image/variant: compat
+  labels:
+    name: wasm-http-server
 spec:
-  hostNetwork: true
   containers:
   - name: http-server
     image: quay.io/ifont/wasm_http_server:latest
